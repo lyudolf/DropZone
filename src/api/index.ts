@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "https://capa-api-dev.capa.ai",
   headers: {
-    Accept: "*/*",
+    Accept: ".step, .dwg",
     "Content-type": "multipart/form-data",
   },
 });
