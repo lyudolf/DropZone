@@ -1,0 +1,19 @@
+body {
+  position: relative;
+  width: 1920px;
+  height: 440px;
+
+  /* Gray / 000 (white default) */
+
+  background: #ffffff;
+  /* Artboard */
+
+  box-shadow: 0px 100px 190px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  font-family: "Noto Sans KR";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
