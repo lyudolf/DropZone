@@ -11,6 +11,12 @@ const instance = axios.create({
 const fileUploadApi = async (formData: FormData) => {
   return await instance.post("/file", formData);
 };
+//
+const fileDeleteApi = async () => {
+  return await instance.delete("/file");
+};
+
+export { fileDeleteApi };
 
 export { fileUploadApi };
 //파일 업로드 시에 160=>120

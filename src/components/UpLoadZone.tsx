@@ -61,7 +61,8 @@ const UploadZone = () => {
         }: AxiosResponse<UploadedResult, any> = await fileUploadApi(formData);
 
         if (result === "SUCCESS" && data) {
-          return setUploadedFiles([...uploadedFiles, data]);
+
+          return setUploadedFiles([...uploadedFiles, data]); //usestate 함수형 setvalue;
         } else {
           return console.log("upload failed");
         }

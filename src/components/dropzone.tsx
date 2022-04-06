@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
 import { IoIosArrowForward } from "react-icons/io";
 import { FiAlertCircle } from "react-icons/fi";
+
 //styled component 말고 다른css 적용방식 사용해볼것 mui
 /* 효율적인 화면설계=> 편한스타일 적응x 효율적이고 간결하게 발전해야함 */
 import { useDropzone } from "react-dropzone";
@@ -33,6 +35,7 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
     onDropRejected: (rejectedFiles) => {
       console.log(rejectedFiles);
     },
+
     multiple: false, //요구사항:단일업로드만 가능할것 => 반복문이용
     accept: ".dwg, .dxf, .stp, .step, image/png", //요구사항: 파일타입지정
   });

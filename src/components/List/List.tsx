@@ -4,6 +4,11 @@ import useStyles from "./useStyles";
 import { Button, IconButton, TextField } from "@material-ui/core";
 import { DeleteOutlined } from "@material-ui/icons";
 
+
+import { Button, IconButton, TextField } from "@material-ui/core";
+import { DeleteOutlined } from "@material-ui/icons";
+
+
 import { UploadedData } from "../UpLoadZone";
 
 const List: React.FC = ({ children }) => {
