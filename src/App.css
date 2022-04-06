@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button.text {
+  border: none;
+  background-color: transparent;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.body1 {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-size: 16px;
+  line-height: 150%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.body2 {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-size: 14px;
+  line-height: 143%;
 }
 
-.App-link {
-  color: #61dafb;
+.caption {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.normal {
+  font-weight: 400;
+}
+
+.gray900 {
+  color: #343a40;
+}
+
+.gray700 {
+  color: #868e96;
+}
+
+.gray600 {
+  color: #adb5bd;
+}
+
+.primary500 {
+  color: #4b88ff;
+}
+
+.mb-4 {
+  margin-bottom: 4px;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-12 {
+  margin-bottom: 12px;
 }
