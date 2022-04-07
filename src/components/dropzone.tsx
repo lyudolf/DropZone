@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
+import { IoIosArrowForward } from "react-icons/io";
+import { FiAlertCircle } from "react-icons/fi";
+
 //styled component 말고 다른css 적용방식 사용해볼것 mui
 /* 효율적인 화면설계=> 편한스타일 적응x 효율적이고 간결하게 발전해야함 */
 import { useDropzone } from "react-dropzone";
@@ -31,8 +35,9 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
     onDropRejected: (rejectedFiles) => {
       console.log(rejectedFiles);
     },
-    multiple: true, //요구사항:단일업로드만 가능할것 => 반복문이용
-    accept: ".dwg, .dxf, .stp, .step", //요구사항: 파일타입지정
+
+    multiple: false, //요구사항:단일업로드만 가능할것 => 반복문이용
+    accept: ".dwg, .dxf, .stp, .step, image/png", //요구사항: 파일타입지정
   });
   console.log(loading);
   //CicularProgress=> material-ui/core spinner
@@ -79,32 +84,7 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
     </div>
   );
 };
-{
-  /*         
-        (
-          <Group4117>
-            <Frame4084>
-              <P1>도면 파일을 이곳에 드래그</P1>
-              <P2> 또는</P2>
-            </Frame4084>
-            <Group4116>
-              <ButtonPc>
-                <TextPc>내 PC에서 첨부</TextPc>
-              </ButtonPc>
-              <Slash>/</Slash>
-              <ButtonCloud>
-                <TextCloud>클라우드에서 첨부</TextCloud>
-              </ButtonCloud>
-            </Group4116>
-            <TextSpec>파일 확장자:.dwg,.dxf,.stp,.step </TextSpec>
-            <Text4>(최대 20개 업로드, 1개당 100MB 이하)</Text4>
-          </Group4117>
-        )}
-      </DivDrag>
-    </div>
-  );
-}; */
-}
+
 export default Dropzone;
 
 const Header = styled.text`

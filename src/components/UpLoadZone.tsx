@@ -62,6 +62,8 @@ export const UploadZone = () => {
             uploadedFiles.concat(data)
           );
           //usestate 함수형 setvalue;
+
+          return setUploadedFiles([...uploadedFiles, data]); //usestate 함수형 setvalue;
         } else {
           return console.log("upload failed");
         }
