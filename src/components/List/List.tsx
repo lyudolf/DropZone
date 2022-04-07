@@ -1,10 +1,8 @@
-import React, { useCallback } from "react";
+import React from "react";
 import useStyles from "./useStyles";
 import { Button, IconButton, TextField } from "@material-ui/core";
 import { DeleteOutlined } from "@material-ui/icons";
 import { UploadedData } from "../UpLoadZone";
-import { fileDeleteApi } from "../../api";
-import axios from "axios";
 
 const List: React.FC = ({ children }) => {
   const classes = useStyles();

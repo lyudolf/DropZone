@@ -7,8 +7,6 @@ import List from "./List/index";
 import styled from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiAlertCircle } from "react-icons/fi";
-import { IconButton } from "@material-ui/core";
-import { DeleteOutlined } from "@material-ui/icons";
 
 export interface UploadedData {
   fileExtension: string | null;
@@ -58,12 +56,12 @@ export const UploadZone = () => {
 
         if (result === "SUCCESS" && data) {
           //uploadedfiles = 이전의 state + concat으로 다음 데이터 붙여준다.
-          return setUploadedFiles((uploadedFiles) =>
-            uploadedFiles.concat(data)
-          );
-          //usestate 함수형 setvalue;
+          // return setUploadedFiles((uploadedFiles) =>
+          //   uploadedFiles.concat(data)
+          // );
+          return setUploadedFiles((prev) => [...prev, data]);
 
-          return setUploadedFiles([...uploadedFiles, data]); //usestate 함수형 setvalue;
+          // return setUploadedFiles([...uploadedFiles, data]); //usestate 함수형 setvalue;
         } else {
           return console.log("upload failed");
         }
@@ -86,9 +84,7 @@ export const UploadZone = () => {
         if (isError) {
           return console.log("upload failed");
         } else {
-          return setUploadedFiles((uploadedFiles) =>
-            uploadedFiles.concat(uploaded)
-          );
+          return setUploadedFiles((prev) => [...prev, ...uploaded]);
         }
       }
     },
@@ -106,7 +102,7 @@ export const UploadZone = () => {
     }
   };
   const isUploaded = uploadedFiles.length > 0;
-  //&& 왼쪽 연산자가 true면 오른쪽 피연산자, false면 해당 리터럴 반환
+  //&& isuploaded 되면 뒤를 반환
   return (
     <div>
       <Header>도면 업로드 후 재료와 수량을 입력해주세요</Header>
