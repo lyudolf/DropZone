@@ -1,3 +1,4 @@
+import { UploadedData } from "./../components/UpLoadZone";
 import axios from "axios";
 
 const instance = axios.create({

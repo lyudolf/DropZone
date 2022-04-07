@@ -7,6 +7,8 @@ import List from "./List/index";
 import styled from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { FiAlertCircle } from "react-icons/fi";
+import { IconButton } from "@material-ui/core";
+import { DeleteOutlined } from "@material-ui/icons";
 
 export interface UploadedData {
   fileExtension: string | null;
@@ -24,16 +26,10 @@ interface UploadedResult {
 // const textLimit = (string: String, n: number)=>{
 //   string.length>0 ? string.substr(0,n) + ""
 // }
-const fileInfo: {
-  fileId: string;
-  fileName: string;
-}[] = [];
-const UploadZone = () => {
+
+export const UploadZone = () => {
   const classes = useStyles({});
   const [uploadedFiles, setUploadedFiles] = useState<UploadedData[]>([]);
-  for (let i = 0; i < uploadedFiles.length; i++) {
-    fileInfo.push(uploadedFiles[i]);
-  }
 
   const onDrop = useCallback(
     async (acceptedFiles: File[], loadingHandler: (value: boolean) => void) => {
@@ -61,7 +57,11 @@ const UploadZone = () => {
         }: AxiosResponse<UploadedResult, any> = await fileUploadApi(formData);
 
         if (result === "SUCCESS" && data) {
-          return setUploadedFiles([...uploadedFiles, data]); //usestate 함수형 setvalue;
+          //uploadedfiles = 이전의 state + concat으로 다음 데이터 붙여준다.
+          return setUploadedFiles((uploadedFiles) =>
+            uploadedFiles.concat(data)
+          );
+          //usestate 함수형 setvalue;
         } else {
           return console.log("upload failed");
         }
@@ -70,6 +70,8 @@ const UploadZone = () => {
           acceptedFiles.map((file) => {
             const formData = new FormData();
             formData.append(`file`, file, file.name);
+
+            //formData.delete(`file`);
 
             return fileUploadApi(formData);
           })
@@ -82,15 +84,26 @@ const UploadZone = () => {
         if (isError) {
           return console.log("upload failed");
         } else {
-          return setUploadedFiles([...uploadedFiles, ...uploaded]);
+          return setUploadedFiles((uploadedFiles) =>
+            uploadedFiles.concat(uploaded)
+          );
         }
       }
     },
     [uploadedFiles]
   );
 
+  const onDelete = (file: UploadedData) => {
+    const delConfirm = window.confirm("really delete file?");
+    if (delConfirm) {
+      const afterDelete = uploadedFiles.filter(
+        (delFile) => file.fileId !== delFile.fileId
+      );
+      setUploadedFiles(afterDelete);
+      alert("delete file complete");
+    }
+  };
   const isUploaded = uploadedFiles.length > 0;
-
   //&& 왼쪽 연산자가 true면 오른쪽 피연산자, false면 해당 리터럴 반환
   return (
     <div>
@@ -111,6 +124,7 @@ const UploadZone = () => {
       ) : (
         <Div></Div>
       )}
+
       <div className={classes.uploadZone}>
         <Uploadezone isUploaded={true}>
           {isUploaded && (
