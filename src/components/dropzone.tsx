@@ -6,7 +6,12 @@ import { useDropzone } from "react-dropzone";
 import { CircularProgress } from "@material-ui/core";
 import { useStyles } from "./useStyles";
 import clsx from "clsx";
-
+import { Button } from "@material-ui/core";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 //타입지정
 interface Props {
   isUploaded: boolean;
@@ -43,6 +48,14 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
   //CicularProgress=> material-ui/core spinner
   //zero:heigth160
   //uploaded:height120
+  const [modalOpen, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div
       {...getRootProps({
@@ -70,9 +83,44 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
               <span className="body1 primary500">내 PC에서 첨부</span>
             </button>
             <span className="body1 gray600"> / </span>
-            <button className="text" type="button">
+            <button className="text" type="button" onClick={handleClickOpen}>
               <span className="body1 primary500">클라우드에서 첨부</span>
             </button>
+          </div>
+          <div>
+            <Dialog
+              open={modalOpen}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              className={classes.Modal}
+            >
+              <DialogTitle id="alert-dialog-title">
+                <div>
+                  <span>클라우드</span>
+                </div>
+                <h2>클라우드에서 파일 첨부</h2>
+              </DialogTitle>
+              <DialogContent>
+                <div>
+                  <div>내 드라이브</div>
+                </div>
+                <div>
+                  <h3>드라이브에 저장된 파일이 없습니다</h3>
+                  <h5>
+                    카파 클라우드에 도면을 보관하고 한 곳에서 편하게
+                    관리해보세요.
+                  </h5>
+                  <button>cloud</button>
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button onClick={handleClose} autoFocus>
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
 
           <p className="caption">파일 확장자 : .dwg, .dxf, .stp, .step</p>

@@ -2,6 +2,10 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => {
   return {
+    Modal: {
+      width: "900px",
+      height: "900px",
+    },
     uploadZone: {
       marginTop: "3%",
       display: "flex",
