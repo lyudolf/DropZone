@@ -8,6 +8,7 @@ button.text {
   border: none;
   background-color: transparent;
   position: relative;
+  cursor: pointer;
 }
 
 .body1 {

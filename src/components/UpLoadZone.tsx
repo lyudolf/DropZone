@@ -92,15 +92,17 @@ export const UploadZone = () => {
   );
 
   const onDelete = (file: UploadedData) => {
-    const delConfirm = window.confirm("really delete file?");
-    if (delConfirm) {
-      const afterDelete = uploadedFiles.filter(
-        (delFile) => file.fileId !== delFile.fileId
+    const del = window.confirm("really delete file?");
+    if (del) {
+      const DeleteFile = uploadedFiles.filter(
+        (delfile) => delfile.fileId !== file.fileId
       );
-      setUploadedFiles(afterDelete);
-      alert("delete file complete");
+
+      setUploadedFiles(DeleteFile);
     }
+    alert("delete file complete");
   };
+
   const isUploaded = uploadedFiles.length > 0;
   //&& isuploaded 되면 뒤를 반환
   return (
@@ -129,12 +131,16 @@ export const UploadZone = () => {
             <div>
               <List.Main>
                 {uploadedFiles.map((file, index) => (
-                  <List.Item key={file.fileId} index={index} file={file} />
+                  <List.Item
+                    key={file.fileId}
+                    index={index}
+                    file={file}
+                    onDelete={onDelete}
+                  />
                 ))}
               </List.Main>
             </div>
           )}
-
           <Dropzone isUploaded={isUploaded} onDrop={onDrop} />
         </Uploadezone>
       </div>

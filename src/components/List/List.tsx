@@ -22,9 +22,11 @@ const List: React.FC = ({ children }) => {
 interface ItemProps {
   index: number;
   file: UploadedData;
+  //ondelete 추가
+  onDelete: (file: UploadedData) => void;
 }
 
-export const Item = ({ file, index }: ItemProps) => {
+export const Item = ({ file, index, onDelete }: ItemProps) => {
   const classes = useStyles();
 
   return (
@@ -51,7 +53,11 @@ export const Item = ({ file, index }: ItemProps) => {
         >
           재료 옵션 선택
         </Button>
-        <IconButton size="small" className="delete-btn">
+        <IconButton
+          size="small"
+          className="delete-btn"
+          onClick={() => onDelete(file)}
+        >
           <DeleteOutlined />
         </IconButton>
       </div>

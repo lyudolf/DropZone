@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import styled from "styled-components";
 //styled component 말고 다른css 적용방식 사용해볼것 mui
 /* 효율적인 화면설계=> 편한스타일 적응x 효율적이고 간결하게 발전해야함 */
@@ -6,7 +6,6 @@ import { useDropzone } from "react-dropzone";
 import { CircularProgress } from "@material-ui/core";
 import { useStyles } from "./useStyles";
 import clsx from "clsx";
-//return type void 안됨
 
 //타입지정
 interface Props {
@@ -16,6 +15,10 @@ interface Props {
     loadingHandler: (value: boolean) => void
   ) => void;
 }
+// const dropzoneRef: any = createRef();
+// const openDialog = () => {
+//   if (dropzoneRef.current) dropzoneRef.current.open();
+// };
 
 const Dropzone = ({ isUploaded, onDrop }: Props) => {
   const classes = useStyles({});
@@ -23,17 +26,18 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
   const handleLoading = (value: boolean) => setLoading(value);
   //usedropzone
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     onDrop: (acceptedFiles: File[]) => {
       onDrop(acceptedFiles, handleLoading);
     },
     //파일타입x
     onDropRejected: (rejectedFiles) => {
       console.log(rejectedFiles);
+      window.alert("잘못된 형식의 파일입니다!!!");
     },
     noClick: true,
     multiple: false, //요구사항:단일업로드만 가능할것 => 반복문이용
-    accept: ".dwg, .dxf, .stp, .step,", //요구사항: 파일타입지정
+    accept: ".dwg, .dxf, .stp, .step", //요구사항: 파일타입지정
   });
   console.log(loading);
   //CicularProgress=> material-ui/core spinner
@@ -62,11 +66,11 @@ const Dropzone = ({ isUploaded, onDrop }: Props) => {
           </p>
 
           <div className="mb-12">
-            <button className="text">
-              <span className="body1 primary500">내 PC에 첨부</span>
+            <button className="text" type="button" onClick={open}>
+              <span className="body1 primary500">내 PC에서 첨부</span>
             </button>
             <span className="body1 gray600"> / </span>
-            <button className="text">
+            <button className="text" type="button">
               <span className="body1 primary500">클라우드에서 첨부</span>
             </button>
           </div>
